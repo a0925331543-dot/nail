@@ -1,255 +1,239 @@
-{\rtf1\ansi\ansicpg950\cocoartf2865
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Infin.Lin 拉霸機</title>
+    
+    <link rel="apple-touch-icon" href="https://i.imgur.com/vHq0FOn.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Infin.Lin">
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="zh-TW">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\
-    <title>Infin.Lin \uc0\u25289 \u38712 \u27231 </title>\
-    \
-    <link rel="apple-touch-icon" href="https://i.imgur.com/vHq0FOn.png">\
-    <link rel="manifest" href="manifest.json">\
-    <meta name="apple-mobile-web-app-capable" content="yes">\
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">\
-    <meta name="apple-mobile-web-app-title" content="Infin.Lin">\
-\
-    <script src="https://cdn.tailwindcss.com"></script>\
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+TC:wght@400;700&family=Bungee&display=swap" rel="stylesheet">\
-    <style>\
-        :root \{\
-            --k-pink: #ff71ce;\
-            --k-blue: #01cdfe;\
-            --k-green: #05ffa1;\
-            --k-purple: #b967ff;\
-            --k-yellow: #fffb96;\
-        \}\
-\
-        body \{\
-            background-color: #0c0014;\
-            background-image: \
-                radial-gradient(circle at 20% 30%, rgba(255, 113, 206, 0.2) 0%, transparent 40%),\
-                radial-gradient(circle at 80% 70%, rgba(1, 205, 254, 0.2) 0%, transparent 40%);\
-            font-family: 'Noto Sans TC', sans-serif;\
-            min-height: 100vh;\
-            overflow: hidden;\
-            display: flex;\
-            align-items: center;\
-            justify-content: center;\
-            position: fixed;\
-            width: 100%;\
-            height: 100%;\
-        \}\
-\
-        .y2k-container \{\
-            border: 5px solid white;\
-            outline: 4px solid var(--k-pink);\
-            box-shadow: \
-                0 0 0 8px rgba(255, 113, 206, 0.3),\
-                15px 15px 0px var(--k-blue),\
-                0 0 30px rgba(255, 113, 206, 0.6);\
-            background: rgba(255, 255, 255, 0.05);\
-            backdrop-filter: blur(15px);\
-            border-radius: 40px;\
-            position: relative;\
-            width: 95%;\
-            max-width: 450px;\
-        \}\
-\
-        .y2k-text-style \{\
-            font-family: 'Bungee', cursive;\
-            background: linear-gradient(to bottom, #fff, var(--k-pink));\
-            -webkit-background-clip: text;\
-            -webkit-text-fill-color: transparent;\
-            filter: drop-shadow(2px 2px 0 var(--k-blue));\
-            display: inline-block;\
-        \}\
-\
-        .text-logo \{\
-            font-size: 2.5rem;\
-            letter-spacing: -1px;\
-            transform: rotate(-2deg);\
-            margin-bottom: 1rem;\
-        \}\
-\
-        .slot-window \{\
-            height: 120px;\
-            overflow: hidden;\
-            border: 3px solid white;\
-            background: rgba(0, 0, 0, 0.8);\
-            position: relative;\
-            border-radius: 20px;\
-            box-shadow: inset 0 0 15px rgba(1, 205, 254, 0.5);\
-        \}\
-\
-        .slot-reel \{\
-            transition: transform 4s cubic-bezier(0.15, 0, 0.05, 1);\
-        \}\
-\
-        .slot-item \{\
-            height: 120px;\
-            display: flex;\
-            align-items: center;\
-            justify-content: center;\
-            font-size: 1rem;\
-            font-weight: 800;\
-            color: #fff;\
-            text-shadow: 0 0 8px var(--k-pink);\
-            text-align: center;\
-            padding: 0 5px;\
-        \}\
-\
-        .btn-spin \{\
-            background: linear-gradient(145deg, var(--k-pink), var(--k-purple));\
-            border: 4px solid white;\
-            color: white;\
-            font-family: 'Bungee', cursive;\
-            font-size: 1.5rem;\
-            border-radius: 50px;\
-            box-shadow: 0 8px 0px #d400a1;\
-            transition: all 0.1s;\
-            cursor: pointer;\
-        \}\
-\
-        .btn-spin:active:not(:disabled) \{\
-            transform: translateY(6px);\
-            box-shadow: 0 2px 0px #d400a1;\
-        \}\
-\
-        .deco-icon \{\
-            position: absolute;\
-            z-index: 1;\
-            pointer-events: none;\
-            animation: float 3s ease-in-out infinite;\
-        \}\
-\
-        @keyframes float \{\
-            0%, 100% \{ transform: translateY(0) rotate(0deg); \}\
-            50% \{ transform: translateY(-10px) rotate(5deg); \}\
-        \}\
-    </style>\
-</head>\
-<body>\
-    \
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">\
-        <div class="deco-icon text-pink-400" style="top: 10%; left: 5%; font-size: 2.5rem; opacity: 0.3;">\uc0\u9829 </div>\
-        <div class="deco-icon text-blue-400" style="bottom: 15%; right: 5%; font-size: 3rem; opacity: 0.3;">\uc0\u9733 </div>\
-    </div>\
-\
-    <div class="y2k-container p-6 text-center">\
-        <div class="logo-display-container">\
-            <a href="https://www.instagram.com/lnfin.lin/" target="_blank" class="block">\
-                <div class="y2k-text-style text-logo">Infin.Lin</div>\
-            </a>\
-        </div>\
-\
-        <header class="mb-6">\
-            <h1 class="y2k-text-style text-3xl italic">NAIL LABO</h1>\
-            <p class="text-white bg-black px-3 py-0.5 inline-block mt-1 font-bold text-[10px] tracking-widest italic">RANDOM STYLE GENERATOR</p>\
-        </header>\
-\
-        <div class="grid grid-cols-3 gap-2 mb-8">\
-            <div class="flex flex-col">\
-                <div class="text-[9px] font-black text-white bg-pink-500 mb-1 rounded-sm py-0.5 uppercase">Shape</div>\
-                <div class="slot-window"><div class="slot-reel" id="reel-shape"></div></div>\
-            </div>\
-            <div class="flex flex-col">\
-                <div class="text-[9px] font-black text-white bg-blue-500 mb-1 rounded-sm py-0.5 uppercase">Color</div>\
-                <div class="slot-window"><div class="slot-reel" id="reel-color"></div></div>\
-            </div>\
-            <div class="flex flex-col">\
-                <div class="text-[9px] font-black text-white bg-purple-500 mb-1 rounded-sm py-0.5 uppercase">Element</div>\
-                <div class="slot-window"><div class="slot-reel" id="reel-element"></div></div>\
-            </div>\
-        </div>\
-\
-        <button id="spin-btn" class="btn-spin w-full h-16 mb-6">SPIN!</button>\
-\
-        <div id="result-box" class="w-full bg-white text-black p-4 rounded-2xl opacity-0 transform scale-90 transition-all duration-700">\
-            <div class="bg-blue-400 text-black text-[10px] font-bold px-2 py-0.5 inline-block mb-2 rotate-[-2deg]">TODAY'S K-VIBE</div>\
-            <div id="result-text" class="text-base font-black italic uppercase leading-tight"></div>\
-        </div>\
-\
-        <footer class="mt-8 opacity-30 text-white text-[9px] tracking-tighter">\
-            INFIN.LIN SYSTEM // VER 4.0 // PWA READY\
-        </footer>\
-    </div>\
-\
-    <script>\
-        if ('serviceWorker' in navigator) \{\
-            window.addEventListener('load', () => \{\
-                navigator.serviceWorker.register('sw.js').catch(() => \{\});\
-            \});\
-        \}\
-\
-        const shapes = ["\uc0\u22291 \u24418 ", "\u26041 \u24418 ", "\u27234 \u22291 \u24418 ", "\u26447 \u20161 \u24418 ", "\u26041 \u22291 \u24418 ", "\u23574 \u22411 ", "\u26799 \u24418 "];\
-        const colors = ["\uc0\u33005 \u33026 \u32005 ", "\u23542 \u23542 \u34253 ", "\u34224 \u34915 \u33609 \u32043 ", "\u27700 \u27877 \u28784 ", "\u27387 \u33457 \u31881 ", "\u20094 \u29157 \u29611 \u29808 ", "\u33609 \u33683 \u29275 \u22902 ", "\u28145 \u37202 \u32005 ", "\u34588 \u26691 \u31881 ", "\u35910 \u27801 \u32005 ", "\u21320 \u22812 \u34253 ", "\u38695 \u38718 \u34253 ", "\u20912 \u26230 \u34253 ", "\u34255 \u38738 \u33394 ", "\u34180 \u33655 \u32160 ", "\u27204 \u27414 \u32160 ", "\u25273 \u33590 \u32160 ", "\u37226 \u26792 \u32160 ", "\u38738 \u29943 \u32160 ", "\u19969 \u39321 \u32043 ", "\u33889 \u33796 \u32043 ", "\u33419 \u27877 \u32043 ", "\u37504 \u27827 \u28784 ", "\u28845 \u28784 \u33394 ", "\u34253 \u28784 \u33394 ", "\u34261 \u28784 \u33394 ", "\u37467 \u31558 \u28784 ", "\u28966 \u31958 \u26837 ", "\u29141 \u40613 \u22902 ", "\u30899 \u22521 \u21654 \u21857 ", "\u27888 \u24335 \u22902 \u33590 ", "\u20271 \u29237 \u33590 ", "\u24039 \u20811 \u21147 ", "\u22902 \u37226 \u33394 ", "\u26963 \u33865 \u32005 ", "\u29733 \u29632 \u26837 ", "\u32905 \u26690 \u33394 ", "\u40285 \u40643 \u33394 ", "\u33445 \u26411 \u40643 ", "\u27320 \u27308 \u40643 ", "\u21335 \u29916 \u27225 ", "\u29642 \u29786 \u27224 ", "\u22805 \u38525 \u31881 ", "\u22902 \u27833 \u40643 ", "\u20142 \u27225 \u33394 ", "\u26447 \u33394 ", "\u39321 \u27315 \u33394 ", "\u26997 \u33268 \u40657 ", "\u35937 \u29273 \u30333 ", "\u36879 \u26126 \u20912 ", "\u29645 \u29664 \u30333 ", "\u30952 \u30722 \u40657 ", "\u39321 \u27315 \u37329 ", "\u29611 \u29808 \u37329 ", "\u27969 \u27801 \u37504 ", "\u38738 \u37509 \u33394 ", "\u36879 \u26126 \u24187 \u24425 ", "\u32905 \u31881 \u33394 ", "\u29017 \u29179 \u31881 ", "\u33707 \u34349 \u36842 \u38738 "];\
-        const elements = ["\uc0\u23616 \u37096 \u37857 \u38754 \u31881 ", "\u21313 \u23383 \u26550 ", "\u36681 \u21360 \u34174 \u32114 ", "\u27700 \u26524 ", "\u31435 \u39636 \u20985 \u20984 \u24863 ", "\u26997 \u20809 \u31881 ", "\u39764 \u37857 \u31881 ", "\u30862 \u38013 \u31881 ", "\u30722 \u31958 \u31881 ", "\u32048 \u38275 \u37504 \u31881 ", "\u32654 \u20154 \u39770 \u31881 ", "\u37329 \u23660 \u25705 \u25830 \u24863 ", "\u31435 \u39636 \u27700 \u28404 ", "\u28082 \u24907 \u37329 \u23660 ", "\u28014 \u38613 \u33457 \u21321 ", "\u31435 \u39636 \u34676 \u34678 \u32080 ", "\u31435 \u39636 \u24859 \u24515 ", "\u31435 \u39636 \u27611 \u21602 ", "\u24494 \u32302 \u27169 \u22411 ", "\u23383 \u27597 \u36028 \u32025 ", "\u24489 \u21476 \u22577 \u32025 ", "\u27700 \u24425 \u33457 \u26421 ", "\u26143 \u31354 \u32025 ", "\u32654 \u24335 \u22615 \u40201 ", "\u26085 \u31995 \u21644 \u32025 ", "\u38647 \u23556 \u36028 \u32025 ", "\u21934 \u33394 \u28472 \u23652 ", "\u38617 \u33394 \u26248 \u26579 ", "\u22823 \u29702 \u30707 \u32011 ", "\u38642 \u24425 \u26248 \u26579 ", "\u26997 \u32048 \u25163 \u32362 \u32218 ", "\u26827 \u30436 \u26684 ", "\u26684 \u23376 \u24067 \u32011 ", "\u29733 \u29632 \u32011 ", "\u35961 \u32011 ", "\u27861 \u24335 \u37002 \u26694 ", "\u21453 \u27861 \u24335 ", "\u26997 \u31777 \u22291 \u40670 ", "\u25918 \u23556 \u32218 \u26781 ", "\u24190 \u20309 \u33394 \u22602 ", "\u37329 \u23660 \u25551 \u37002 ", "\u19981 \u35215 \u21063 \u37002 \u32227 ", "\u37329 \u23660 \u37466 \u37336 ", "\u29645 \u29664 ", "\u22825 \u28982 \u30707 ", "\u20999 \u21106 \u38013 \u39166 ", "\u37329 \u23660 \u37832 \u26781 ", "\u35997 \u27580 \u29255 ", "\u37329 \u31636 ", "\u37504 \u31636 ", "\u20094 \u29157 \u33457 ", "\u24494 \u31505 \u31505 \u33225 ", "\u20116 \u33426 \u26143 ", "\u24425 \u33394 \u27874 \u40670 ", "\u23567 \u29066 \u28014 \u38613 ", "\u38642 \u26421 ", "\u24425 \u34425 ", "\u30952 \u30722 \u38695 \u38754 ", "\u35987 \u30524 \u20809 \u25928 ", "\u26230 \u30707 \u35987 \u30524 "];\
-\
-        function createReel(reelId, items) \{\
-            const reel = document.getElementById(reelId);\
-            // \uc0\u22686 \u21152 \u35079 \u35069 \u20493 \u25976 \u30906 \u20445 \u26059 \u36681 \u38263 \u24230 \u36275 \u22816 \
-            const repeatedItems = Array(20).fill(items).flat();\
-            repeatedItems.forEach(item => \{\
-                const div = document.createElement('div');\
-                div.className = 'slot-item';\
-                div.textContent = item;\
-                reel.appendChild(div);\
-            \});\
-            return items.length;\
-        \}\
-\
-        const shapeLen = createReel('reel-shape', shapes);\
-        const colorLen = createReel('reel-color', colors);\
-        const elementLen = createReel('reel-element', elements);\
-\
-        let isSpinning = false;\
-        const itemHeight = 120;\
-\
-        document.getElementById('spin-btn').addEventListener('click', function() \{\
-            if (isSpinning) return;\
-            isSpinning = true;\
-            this.disabled = true;\
-\
-            const resultBox = document.getElementById('result-box');\
-            resultBox.classList.add('opacity-0', 'scale-90');\
-\
-            // \uc0\u38568 \u27231 \u30446 \u27161 \u32034 \u24341 \
-            const tShape = Math.floor(Math.random() * shapeLen);\
-            const tColor = Math.floor(Math.random() * colorLen);\
-            const tElem = Math.floor(Math.random() * elementLen);\
-\
-            // \uc0\u38568 \u27231 \u22280 \u25976  (7~12\u22280 )\u65292 \u22686 \u21152 \u38568 \u27231 \u24615 \
-            const rounds1 = 7 + Math.floor(Math.random() * 5);\
-            const rounds2 = 7 + Math.floor(Math.random() * 5);\
-            const rounds3 = 7 + Math.floor(Math.random() * 5);\
-\
-            document.getElementById('reel-shape').style.transform = `translateY(-$\{(shapeLen * rounds1 + tShape) * itemHeight\}px)`;\
-            \
-            setTimeout(() => \{ \
-                document.getElementById('reel-color').style.transform = `translateY(-$\{(colorLen * rounds2 + tColor) * itemHeight\}px)`; \
-            \}, 150);\
-            \
-            setTimeout(() => \{ \
-                document.getElementById('reel-element').style.transform = `translateY(-$\{(elementLen * rounds3 + tElem) * itemHeight\}px)`; \
-            \}, 300);\
-\
-            setTimeout(() => \{\
-                document.getElementById('result-text').innerHTML = `\
-                    <span style="color:var(--k-pink)">$\{shapes[tShape]\}</span> \'d7 \
-                    <span style="color:var(--k-blue)">$\{colors[tColor]\}</span> \'d7 \
-                    <span style="color:var(--k-purple)">$\{elements[tElem]\}</span>\
-                `;\
-                resultBox.classList.remove('opacity-0', 'scale-90');\
-                resultBox.classList.add('scale-100');\
-                isSpinning = false;\
-                this.disabled = false;\
-            \}, 4500);\
-        \});\
-    </script>\
-</body>\
-</html>}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+TC:wght@400;700&family=Bungee&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --k-pink: #ff71ce;
+            --k-blue: #01cdfe;
+            --k-green: #05ffa1;
+            --k-purple: #b967ff;
+            --k-yellow: #fffb96;
+        }
+
+        body {
+            background-color: #0c0014;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 113, 206, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(1, 205, 254, 0.2) 0%, transparent 40%);
+            font-family: 'Noto Sans TC', sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        .y2k-container {
+            border: 5px solid white;
+            outline: 4px solid var(--k-pink);
+            box-shadow: 
+                0 0 0 8px rgba(255, 113, 206, 0.3),
+                15px 15px 0px var(--k-blue),
+                0 0 30px rgba(255, 113, 206, 0.6);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 40px;
+            position: relative;
+            width: 95%;
+            max-width: 450px;
+        }
+
+        .y2k-text-style {
+            font-family: 'Bungee', cursive;
+            background: linear-gradient(to bottom, #fff, var(--k-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 0 var(--k-blue));
+            display: inline-block;
+        }
+
+        .text-logo {
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+            transform: rotate(-2deg);
+            margin-bottom: 1rem;
+        }
+
+        .slot-window {
+            height: 120px;
+            overflow: hidden;
+            border: 3px solid white;
+            background: rgba(0, 0, 0, 0.8);
+            position: relative;
+            border-radius: 20px;
+            box-shadow: inset 0 0 15px rgba(1, 205, 254, 0.5);
+        }
+
+        .slot-reel {
+            transition: transform 4s cubic-bezier(0.15, 0, 0.05, 1);
+        }
+
+        .slot-item {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 0 8px var(--k-pink);
+            text-align: center;
+            padding: 0 5px;
+        }
+
+        .btn-spin {
+            background: linear-gradient(145deg, var(--k-pink), var(--k-purple));
+            border: 4px solid white;
+            color: white;
+            font-family: 'Bungee', cursive;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 8px 0px #d400a1;
+            transition: all 0.1s;
+            cursor: pointer;
+        }
+
+        .btn-spin:active:not(:disabled) {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0px #d400a1;
+        }
+
+        .deco-icon {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="deco-icon text-pink-400" style="top: 10%; left: 5%; font-size: 2.5rem; opacity: 0.3;">♥</div>
+        <div class="deco-icon text-blue-400" style="bottom: 15%; right: 5%; font-size: 3rem; opacity: 0.3;">★</div>
+    </div>
+
+    <div class="y2k-container p-6 text-center">
+        <div class="logo-display-container">
+            <a href="https://www.instagram.com/lnfin.lin/" target="_blank" class="block">
+                <div class="y2k-text-style text-logo">Infin.Lin</div>
+            </a>
+        </div>
+
+        <header class="mb-6">
+            <h1 class="y2k-text-style text-3xl italic">NAIL LABO</h1>
+            <p class="text-white bg-black px-3 py-0.5 inline-block mt-1 font-bold text-[10px] tracking-widest italic">RANDOM STYLE GENERATOR</p>
+        </header>
+
+        <div class="grid grid-cols-3 gap-2 mb-8">
+            <div class="flex flex-col">
+                <div class="text-[9px] font-black text-white bg-pink-500 mb-1 rounded-sm py-0.5 uppercase">Shape</div>
+                <div class="slot-window"><div class="slot-reel" id="reel-shape"></div></div>
+            </div>
+            <div class="flex flex-col">
+                <div class="text-[9px] font-black text-white bg-blue-500 mb-1 rounded-sm py-0.5 uppercase">Color</div>
+                <div class="slot-window"><div class="slot-reel" id="reel-color"></div></div>
+            </div>
+            <div class="flex flex-col">
+                <div class="text-[9px] font-black text-white bg-purple-500 mb-1 rounded-sm py-0.5 uppercase">Element</div>
+                <div class="slot-window"><div class="slot-reel" id="reel-element"></div></div>
+            </div>
+        </div>
+
+        <button id="spin-btn" class="btn-spin w-full h-16 mb-6">SPIN!</button>
+
+        <div id="result-box" class="w-full bg-white text-black p-4 rounded-2xl opacity-0 transform scale-90 transition-all duration-700">
+            <div class="bg-blue-400 text-black text-[10px] font-bold px-2 py-0.5 inline-block mb-2 rotate-[-2deg]">TODAY'S K-VIBE</div>
+            <div id="result-text" class="text-base font-black italic uppercase leading-tight"></div>
+        </div>
+
+        <footer class="mt-8 opacity-30 text-white text-[9px] tracking-tighter">
+            INFIN.LIN SYSTEM // VER 4.0 // PWA READY
+        </footer>
+    </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(() => {});
+            });
+        }
+
+        const shapes = ["圓形", "方形", "橢圓形", "杏仁形", "方圓形", "尖型", "梯形"];
+        const colors = ["胭脂紅", "寶寶藍", "薰衣草紫", "水泥灰", "櫻花粉", "乾燥玫瑰", "草莓牛奶", "深酒紅", "蜜桃粉", "豆沙紅", "午夜藍", "霧霾藍", "冰晶藍", "藏青色", "薄荷綠", "橄欖綠", "抹茶綠", "酪梨綠", "青瓷綠", "丁香紫", "葡萄紫", "芋泥紫", "銀河灰", "炭灰色", "藍灰色", "藕灰色", "鉛筆灰", "焦糖棕", "燕麥奶", "碳培咖啡", "泰式奶茶", "伯爵茶", "巧克力", "奶酪色", "楓葉紅", "琥珀棕", "肉桂色", "鵝黃色", "芥末黃", "檸檬黃", "南瓜橙", "珊瑚橘", "夕陽粉", "奶油黃", "亮橙色", "杏色", "香檳色", "極致黑", "象牙白", "透明冰", "珍珠白", "磨砂黑", "香檳金", "玫瑰金", "流沙銀", "青銅色", "透明幻彩", "肉粉色", "煙燻粉", "莫蘭迪青"];
+        const elements = ["局部鏡面粉", "十字架", "轉印蕾絲", "水果圖案", "立體凹凸感", "極光粉", "魔鏡粉", "碎鑽粉", "砂糖粉", "細閃銀粉", "美人魚粉", "金屬摩擦感", "立體水滴", "液態金屬", "浮雕花卉", "立體蝴蝶結", "立體愛心", "立體毛呢", "微縮模型", "字母貼紙", "復古報紙", "水彩花朵", "星空紙", "美式塗鴉", "日系和紙", "雷射貼紙", "單色漸層", "雙色暈染", "大理石紋", "雲彩暈染", "極細手繪線", "棋盤格", "格子布紋", "琥珀紋", "豹紋", "法式邊框", "反法式", "極簡圓點", "放射線條", "幾何色塊", "金屬描邊", "不規則邊緣", "金屬鉚釘", "珍珠", "天然石", "切割鑽飾", "金屬鏈條", "貝殼片", "金箔", "銀箔", "乾燥花", "微笑笑臉", "五芒星", "彩色波點", "小熊浮雕", "雲朵", "彩虹", "磨砂霧面", "貓眼光效", "晶石貓眼"];
+
+        function createReel(reelId, items) {
+            const reel = document.getElementById(reelId);
+            const repeatedItems = Array(20).fill(items).flat();
+            repeatedItems.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'slot-item';
+                div.textContent = item;
+                reel.appendChild(div);
+            });
+            return items.length;
+        }
+
+        const shapeLen = createReel('reel-shape', shapes);
+        const colorLen = createReel('reel-color', colors);
+        const elementLen = createReel('reel-element', elements);
+
+        let isSpinning = false;
+        const itemHeight = 120;
+
+        document.getElementById('spin-btn').addEventListener('click', function() {
+            if (isSpinning) return;
+            isSpinning = true;
+            this.disabled = true;
+
+            const resultBox = document.getElementById('result-box');
+            resultBox.classList.add('opacity-0', 'scale-90');
+
+            const tShape = Math.floor(Math.random() * shapeLen);
+            const tColor = Math.floor(Math.random() * colorLen);
+            const tElem = Math.floor(Math.random() * elementLen);
+
+            const rounds1 = 8 + Math.floor(Math.random() * 4);
+            const rounds2 = 8 + Math.floor(Math.random() * 4);
+            const rounds3 = 8 + Math.floor(Math.random() * 4);
+
+            document.getElementById('reel-shape').style.transform = `translateY(-${(shapeLen * rounds1 + tShape) * itemHeight}px)`;
+            setTimeout(() => { document.getElementById('reel-color').style.transform = `translateY(-${(colorLen * rounds2 + tColor) * itemHeight}px)`; }, 150);
+            setTimeout(() => { document.getElementById('reel-element').style.transform = `translateY(-${(elementLen * rounds3 + tElem) * itemHeight}px)`; }, 300);
+
+            setTimeout(() => {
+                document.getElementById('result-text').innerHTML = `
+                    <span style="color:var(--k-pink)">${shapes[tShape]}</span> × 
+                    <span style="color:var(--k-blue)">${colors[tColor]}</span> × 
+                    <span style="color:var(--k-purple)">${elements[tElem]}</span>
+                `;
+                resultBox.classList.remove('opacity-0', 'scale-90');
+                resultBox.classList.add('scale-100');
+                isSpinning = false;
+                this.disabled = false;
+            }, 4500);
+        });
+    </script>
+</body>
+</html>
